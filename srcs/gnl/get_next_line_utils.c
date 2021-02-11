@@ -6,13 +6,13 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:44:33 by esobchak          #+#    #+#             */
-/*   Updated: 2020/11/25 15:11:29 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:52:06 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int			ft_strlen(const char *s1)
+int			ft_strlen1(const char *s1)
 {
 	size_t i;
 
@@ -27,7 +27,7 @@ int			ft_strlen(const char *s1)
 	return (i);
 }
 
-char		*ft_strdup(const char *s1)
+char		*ft_strdup1(const char *s1)
 {
 	char	*dest;
 	size_t	len;
@@ -35,7 +35,7 @@ char		*ft_strdup(const char *s1)
 
 	if (!s1)
 		return (NULL);
-	len = ft_strlen(s1) + 1;
+	len = ft_strlen1(s1) + 1;
 	if (!(dest = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	i = 0;
@@ -48,7 +48,7 @@ char		*ft_strdup(const char *s1)
 	return (dest);
 }
 
-char		*ft_strjoin(char *s1, char const *s2)
+char		*ft_strjoin1(char *s1, char const *s2)
 {
 	char	*str;
 	size_t	i;
@@ -56,7 +56,7 @@ char		*ft_strjoin(char *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	sz = ft_strlen(s1) + ft_strlen(s2) + 1;
+	sz = ft_strlen1(s1) + ft_strlen1(s2) + 1;
 	if (!(str = (char *)malloc(sizeof(char) * sz)))
 		return (NULL);
 	i = 0;
@@ -75,7 +75,7 @@ char		*ft_strjoin(char *s1, char const *s2)
 	return (str);
 }
 
-char		*ft_strnew(size_t size)
+char		*ft_strnew1(size_t size)
 {
 	char	*str;
 	size_t	i;
@@ -92,7 +92,7 @@ char		*ft_strnew(size_t size)
 	return (str);
 }
 
-char		*ft_strchr(const char *s, int c)
+char		*ft_strchr1(const char *s, int c)
 {
 	while (*s)
 	{

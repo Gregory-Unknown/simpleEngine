@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:45:48 by esobchak          #+#    #+#             */
-/*   Updated: 2020/11/24 16:14:29 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:49:42 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+#define BUFFER_SIZE 1000
+
 int		get_next_line(int fd, char **line);
-int		ft_strlen(const char *s1);
-char	*ft_strdup(const char *s1);
-char	*ft_strjoin(char *s1, const char *s2);
-char	*ft_strnew(size_t size);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strcpy(char *s1, const char *s2);
-void	ft_strclr(char **s);
+int		ft_strlen1(const char *s1);
+char	*ft_strdup1(const char *s1);
+char	*ft_strjoin1(char *s1, const char *s2);
+char	*ft_strnew1(size_t size);
+char	*ft_strchr1(const char *s, int c);
+char	*ft_strcpy1(char *s1, const char *s2);
+void	ft_strclr1(char **s);
 char	*check_remainder(char **remainder, char **line);
 
 #endif

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 11:54:55 by esobchak          #+#    #+#             */
-/*   Updated: 2021/02/11 13:26:59 by esobchak         ###   ########.fr       */
+/*   Created: 2021/01/31 19:46:35 by esobchak          #+#    #+#             */
+/*   Updated: 2021/01/31 21:21:07 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void    ft_putstr(const char *str)
 {
-	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+    int i;
+
+    i = 0;
+    while (*(str + i))
+    {
+        write (1, &(*(str + i)), 1);
+        i++;
+    }
+    write (1, "\n", 1);
 }
