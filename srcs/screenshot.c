@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   screenshot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 19:14:38 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/02 13:23:08 by esobchak         ###   ########.fr       */
+/*   Created: 2021/02/22 23:13:45 by esobchak          #+#    #+#             */
+/*   Updated: 2021/03/24 15:29:38 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-int		ft_strchr(const char *s, int c)
+void	ft_do_screenshot(t_ray *ray)
 {
-	char *str;
-
-	if (c == 0)
-		return (1);
-	str = (char*)s;
-	while (*(str))
-	{
-		if (*str == (char)c)
-			return (1);
-		str++;
-	}
-	return (0);
+	ft_strlen(ray->pars.no);
 }

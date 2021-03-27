@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:48:09 by esobchak          #+#    #+#             */
-/*   Updated: 2021/02/11 13:27:17 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:23:32 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
-char				*ft_strchr(const char *s, int c);
+int					ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *haystack,
 		const char *needle, size_t len);

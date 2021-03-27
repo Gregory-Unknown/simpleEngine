@@ -6,13 +6,13 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:44:33 by esobchak          #+#    #+#             */
-/*   Updated: 2021/01/31 20:52:06 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:56:21 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int			ft_strlen1(const char *s1)
+int			ft_strlen1(char *s1)
 {
 	size_t i;
 
@@ -27,7 +27,7 @@ int			ft_strlen1(const char *s1)
 	return (i);
 }
 
-char		*ft_strdup1(const char *s1)
+char		*ft_strdup1(char *s1)
 {
 	char	*dest;
 	size_t	len;
@@ -48,7 +48,7 @@ char		*ft_strdup1(const char *s1)
 	return (dest);
 }
 
-char		*ft_strjoin1(char *s1, char const *s2)
+char		*ft_strjoin1(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
@@ -92,7 +92,7 @@ char		*ft_strnew1(size_t size)
 	return (str);
 }
 
-char		*ft_strchr1(const char *s, int c)
+char		*ft_strchr1(char *s, int c)
 {
 	while (*s)
 	{

@@ -6,7 +6,7 @@
 #    By: esobchak <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/29 18:24:15 by esobchak          #+#    #+#              #
-#    Updated: 2021/01/29 18:37:33 by esobchak         ###   ########.fr        #
+#    Updated: 2021/03/24 15:05:10 by esobchak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,16 @@
 GAME        = cub3D
 
 SRC		    = main.c \
-                gnl/get_next_line.c gnl/get_next_line_utils.c
+            	gnl/get_next_line.c gnl/get_next_line_utils.c parser.c \
+				check_map.c parser_color.c parser_utils.c parser_texture.c \
+				parser_resolution.c init.c init_player.c key_utils.c screenshot.c \
+				render.c init_sprites.c sprite.c textures.c raycasting.c utils.c move_player.c
 SRCS		= $(addprefix srcs/, $(SRC))
 
 OBJS		= $(SRCS:.c=.o)
 
 # include
-INC         = -I ./ -I ./libft -I ./ft_printf -I ./gnl
+INC         = -I ./cub3d.h -I ./libft -I ./ft_printf -I ./gnl
 
 # flags
 FLAGS       = -Wall -Wextra -Werror -g

@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   parser_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 19:14:38 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/02 13:23:08 by esobchak         ###   ########.fr       */
+/*   Created: 2021/02/22 22:53:03 by esobchak          #+#    #+#             */
+/*   Updated: 2021/02/23 11:33:46 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-int		ft_strchr(const char *s, int c)
+static int	ft_check_path(char *s)
 {
-	char *str;
+	int	fd;
+	int tmp;
 
-	if (c == 0)
-		return (1);
-	str = (char*)s;
-	while (*(str))
-	{
-		if (*str == (char)c)
-			return (1);
-		str++;
-	}
+	fd = open(s, O_RDONLY);
+	tmp = fd;
+	close(fd);
+	if (tmp < 0)
+		return (-1);
+	return (0);
+}
+
+int			ft_set_texture(char *str, char **path)
+{
+	if (*path || ft_check_path(str))
+		return (-1);
+	*path = ft_strdup(str);
 	return (0);
 }

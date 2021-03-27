@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 13:36:17 by esobchak          #+#    #+#             */
-/*   Updated: 2021/01/31 20:48:26 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/02/23 00:01:16 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-#define BUFFER_SIZE 1000
+# define BUFFER_SIZE 1000
 
 int		get_next_line(int fd, char **line);
 int		ft_strlen1(const char *s1);
