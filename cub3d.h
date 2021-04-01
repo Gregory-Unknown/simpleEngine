@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:36:45 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 16:36:57 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:10:11 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ typedef struct	s_ray
 	int			left;
 	int			right;
 	double		*buffer;
-
+	int			screenshot_flag;
 }				t_ray;
 
 int				ft_init_game(t_ray *ray);

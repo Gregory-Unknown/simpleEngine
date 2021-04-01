@@ -6,7 +6,7 @@
 #    By: esobchak <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/29 18:24:15 by esobchak          #+#    #+#              #
-#    Updated: 2021/04/01 16:13:55 by esobchak         ###   ########.fr        #
+#    Updated: 2021/04/01 16:43:55 by esobchak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,5 @@ re: fclean all
 
 norm :
 	@norminette *.c *.h ./libft/*.c ./libft/*.h
-
-screen : $(NAME)
-	./$(NAME) cub3d.cub --save
-	open screen.bmp
 
 .PHONY: all clean fclean re norm run screen

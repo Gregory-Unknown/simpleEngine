@@ -6,19 +6,19 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:13:45 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 16:35:32 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:17:50 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <stdio.h>
 
 static void	ft_init_screenshots(t_ray *ray)
 {
 	ft_init(ray);
 	ft_init_player(ray);
+	ray->screenshot_flag = 1;
 	ray->mlx.mlx = mlx_init();
-	ray->mlx.win = mlx_new_window(ray->mlx.mlx,
-	ray->pars.r1, ray->pars.r2, "cub3D");
 	ft_init_texture(&ray->no, ray);
 	ft_init_texture(&ray->so, ray);
 	ft_init_texture(&ray->we, ray);
@@ -75,7 +75,7 @@ void		ft_do_screenshot(t_ray *ray)
 
 	fd = open("cub3D.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (fd < 0)
-		ft_print_error("ERROR: can't create file\n");
+		ft_print_error("ERROR: file couldn't be create !\n");
 	ft_init_screenshots(ray);
 	ft_start(ray);
 	bitmap = ft_init_bitmap(ray);

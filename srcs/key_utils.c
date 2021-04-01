@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:42:23 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/27 20:43:04 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:16:56 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int		ft_unpress_key(int key, t_ray *ray)
 
 int		ft_exit(t_ray *ray)
 {
-	mlx_destroy_window(ray->mlx.mlx, ray->mlx.win);
+	if (ray->screenshot_flag == 0)
+		mlx_destroy_window(ray->mlx.mlx, ray->mlx.win);
 	ft_free_str(ray->pars.map);
 	exit(1);
 	return (0);

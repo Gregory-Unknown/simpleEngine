@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:13:09 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 16:19:17 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:10:10 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_init(t_ray *ray)
 {
+	ray->screenshot_flag = 0;
 	ray->maplen = ft_maplen(ray->pars.map);
 	ray->player.pos.x = 0;
 	ray->player.pos.y = 0;
