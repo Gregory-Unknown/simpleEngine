@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 22:35:04 by esobchak          #+#    #+#             */
-/*   Updated: 2021/02/23 00:10:45 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:05:47 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,9 @@ int		ft_screen_resolution(char *s1, char *s2, t_pars *pars)
 		pars->r1 = 1920;
 	if (pars->r2 > 1080)
 		pars->r2 = 1080;
+	if (pars->r1 < 720)
+		pars->r1 = 720;
+	if (pars->r2 < 480)
+		pars->r2 = 480;
 	return (0);
 }

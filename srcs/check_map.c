@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:10:28 by esobchak          #+#    #+#             */
-/*   Updated: 2021/02/23 11:49:36 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 16:33:35 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static int	ft_check_margin(int i, int j, char **s)
 		return (1);
 	if (s[i - 1][j] == ' ' || s[i + 1][j] == ' ')
 		return (1);
-	if (j > ((int)ft_strlen(s[i - 1]) - 1) || j > ((int)ft_strlen(s[i + 1]) - 1))
+	if (s[i - 1][j - 1] == ' ' || s[i + 1][j - 1] == ' ')
+		return (1);
+	if (j >= ((int)ft_strlen(s[i - 1]) - 1) ||
+	j >= ((int)ft_strlen(s[i + 1]) - 1))
 		return (1);
 	return (0);
 }
@@ -66,5 +69,7 @@ int			ft_check_map(char **s)
 		}
 		i++;
 	}
+	if (flag == 0)
+		return (-1);
 	return (0);
 }

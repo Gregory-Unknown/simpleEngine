@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 13:10:37 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/26 16:03:53 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:52:23 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_dist(t_ray *ray)
 	else
 		ray->perpwalldist = (ray->player.map_pos.y - ray->player.pos.y +
 		(1 - ray->player.step.y) / 2) / ray->raydiry;
-	ray->lineheight = (int)(SH / ray->perpwalldist);
-	ray->drawstart = -ray->lineheight / 2 + SH / 2;
+	ray->lineheight = (int)(ray->pars.r2 / ray->perpwalldist);
+	ray->drawstart = -ray->lineheight / 2 + ray->pars.r2 / 2;
 	if (ray->drawstart < 0)
 		ray->drawstart = 0;
-	ray->drawend = ray->lineheight / 2 + SH / 2;
-	if (ray->drawend >= SH)
-		ray->drawend = SH - 1;
+	ray->drawend = ray->lineheight / 2 + ray->pars.r2 / 2;
+	if (ray->drawend >= ray->pars.r2)
+		ray->drawend = ray->pars.r2 - 1;
 }
 
 void	ft_route(t_ray *ray)
@@ -62,7 +62,7 @@ void	ft_text(t_ray *ray)
 	if (ray->side == 1 && ray->raydiry < 0)
 		ray->textur.pos.x = TW - ray->textur.pos.x - 1;
 	ray->textur.step = 1.0 * TH / ray->lineheight;
-	ray->textur.start_pos = (ray->drawstart - SH / 2 +
+	ray->textur.start_pos = (ray->drawstart - ray->pars.r2 / 2 +
 	ray->lineheight / 2) * ray->textur.step;
 }
 

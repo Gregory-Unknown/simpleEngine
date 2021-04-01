@@ -6,40 +6,34 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 12:36:03 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/24 17:30:26 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:44:31 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-unsigned	int	ft_get_pixel(t_ray *ray, int x, int y)
-{
-	unsigned int	color;
-	char			*dest;
-
-	dest = ray->sprite.img.addr + (y * ray->sprite.img.line_length + x * (ray->sprite.img.bits_per_pixel / 8));
-	color = *(unsigned int*)dest;
-	return (color);
-}
-
 void	ft_sort(t_ray *ray)
 {
-	int	i;
-	int	tmpd;
-	int	tmpo;
+	int		i;
+	int		j;
+	double	temp;
 
 	i = 0;
-	while (i < ray->number)
+	while (i < ray->number - 1)
 	{
-		if (ray->dist[i] < ray->dist[i + 1])
+		j = i + 1;
+		while (j < ray->number)
 		{
-			tmpd = ray->dist[i];
-			ray->dist[i] = ray->dist[i + 1];
-			ray->dist[i + 1] = tmpd;
-			tmpo = ray->order[i];
-			ray->order[i] = ray->order[i + 1];
-			ray->order[i + 1] = tmpo;
-			i = -1;
+			if (ray->dist[i] < ray->dist[j])
+			{
+				temp = ray->dist[i];
+				ray->dist[i] = ray->dist[j];
+				ray->dist[j] = temp;
+				temp = (double)ray->order[i];
+				ray->order[i] = ray->order[j];
+				ray->order[j] = (int)temp;
+			}
+			j++;
 		}
 		i++;
 	}
@@ -49,46 +43,52 @@ void	ft_get_data(t_ray *ray, int x)
 {
 	ray->spr.spr.x = ray->spr.str[ray->order[x]].x - ray->player.pos.x;
 	ray->spr.spr.y = ray->spr.str[ray->order[x]].y - ray->player.pos.y;
-	ray->spr.invdet = 1.0 / (ray->player.plane.x * ray->player.dir.y - ray->player.plane.y * ray->player.dir.x);
-	ray->spr.transform.x = ray->spr.invdet * (ray->player.dir.y * ray->spr.spr.x - ray->player.dir.x * ray->spr.spr.y);
-	ray->spr.transform.y = ray->spr.invdet * (-ray->player.plane.y * ray->spr.spr.x + ray->player.plane.x * ray->spr.spr.y);
-	ray->spr.sscreen = (int)((SW / 2) * (1 + ray->spr.transform.x / ray->spr.transform.y));
+	ray->spr.invdet = 1.0 / (ray->player.plane.x * ray->player.dir.y -
+	ray->player.plane.y * ray->player.dir.x);
+	ray->spr.transform.x = ray->spr.invdet * (ray->player.dir.y *
+	ray->spr.spr.x - ray->player.dir.x * ray->spr.spr.y);
+	ray->spr.transform.y = ray->spr.invdet * (-ray->player.plane.y
+	* ray->spr.spr.x + ray->player.plane.x * ray->spr.spr.y);
+	ray->spr.sscreen = (int)((ray->pars.r1 / 2) *
+	(1 + ray->spr.transform.x / ray->spr.transform.y));
 }
 
 void	ft_calc_render(t_ray *ray)
 {
-	ray->spr.height = abs((int)(SH / (ray->spr.transform.y)));
-	ray->spr.drawstart.y = -ray->spr.height / 2 + SH / 2;
+	ray->spr.height = abs((int)(ray->pars.r2 / (ray->spr.transform.y)));
+	ray->spr.drawstart.y = -ray->spr.height / 2 + ray->pars.r2 / 2;
 	if (ray->spr.drawstart.y < 0)
 		ray->spr.drawstart.y = 0;
-	ray->spr.drawend.y = ray->spr.height / 2 + SH / 2;
-	if (ray->spr.drawend.y >= SH)
-		ray->spr.drawend.y = SH - 1;
-	ray->spr.width = abs((int)(SH / ray->spr.transform.y));
+	ray->spr.drawend.y = ray->spr.height / 2 + ray->pars.r2 / 2;
+	if (ray->spr.drawend.y >= ray->pars.r2)
+		ray->spr.drawend.y = ray->pars.r2 - 1;
+	ray->spr.width = abs((int)(ray->pars.r2 / ray->spr.transform.y));
 	ray->spr.drawstart.x = -ray->spr.width / 2 + ray->spr.sscreen;
 	if (ray->spr.drawstart.x < 0)
 		ray->spr.drawstart.x = 0;
 	ray->spr.drawend.x = ray->spr.width / 2 + ray->spr.sscreen;
-	if (ray->spr.drawend.x >= SW)
-		ray->spr.drawend.x = SW - 1;
+	if (ray->spr.drawend.x >= ray->pars.r1)
+		ray->spr.drawend.x = ray->pars.r1 - 1;
 }
 
 void	ft_check(t_ray *ray)
 {
-	if (ray->spr.transform.y > 0 && ray->spr.stripe > 0 && ray->spr.stripe < SW
-	&& ray->spr.transform.y < ray->buffer[ray->spr.stripe])
+	if (ray->spr.transform.y > 0 && ray->spr.stripe > 0
+	&& ray->spr.stripe < ray->pars.r1 &&
+	ray->spr.transform.y < ray->buffer[ray->spr.stripe])
 	{
 		ray->spr.tmpsy = ray->spr.drawstart.y;
 		while (ray->spr.tmpsy < ray->spr.drawend.y)
 		{
-			ray->spr.tmpsd = (ray->spr.tmpsy) * 256 - SH * 128 + ray->spr.height *128;
+			ray->spr.tmpsd = (ray->spr.tmpsy) * 256 - ray->pars.r2 * 128 +
+			ray->spr.height * 128;
 			ray->spr.stext.y = ((ray->spr.tmpsd * TH) / ray->spr.height) / 256;
-			ray->spr.scol = ft_get_pixel(ray, ray->spr.stext.x, ray->spr.stext.y);
+			ray->spr.scol =
+			ft_get_pixel(ray, ray->spr.stext.x, ray->spr.stext.y);
 			if (ray->spr.scol > 0)
 				pixel_put(ray, ray->spr.stripe, ray->spr.tmpsy, ray->spr.scol);
 			ray->spr.tmpsy++;
 		}
-
 	}
 }
 

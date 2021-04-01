@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 11:47:08 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/26 13:40:58 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:13:23 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_cam(t_ray *ray, int x)
 {
-	ray->camerax = 2 * x / (double)SW - 1;
+	ray->camerax = 2 * x / (double)ray->pars.r1 - 1;
 	ray->raydirx = ray->player.dir.x + ray->player.plane.x * ray->camerax;
 	ray->raydiry = ray->player.dir.y + ray->player.plane.y * ray->camerax;
 	ray->player.map_pos.x = (int)(ray->player.pos.x);
@@ -79,7 +79,7 @@ static void	ft_raycast(t_ray *ray)
 	int			y;
 
 	x = 0;
-	while (x < SW)
+	while (x < ray->pars.r1)
 	{
 		ft_cam(ray, x);
 		ft_step(ray);
@@ -88,7 +88,7 @@ static void	ft_raycast(t_ray *ray)
 		ft_route(ray);
 		ft_text(ray);
 		y = 0;
-		while (y < SH)
+		while (y < ray->pars.r2)
 		{
 			ft_draw(ray, x, y);
 			y++;
@@ -98,14 +98,14 @@ static void	ft_raycast(t_ray *ray)
 	}
 }
 
-int		ft_start(t_ray *ray)
+int			ft_start(t_ray *ray)
 {
 	ft_move(ray);
 	ft_get_number(ray);
 	ray->spr.str = malloc(sizeof(t_d_pos) * ray->number);
 	ray->order = (int *)malloc(sizeof(int) * ray->number);
 	ray->dist = (double *)malloc(sizeof(double) * ray->number);
-	ray->buffer = (double *)malloc(sizeof(double) * SW);
+	ray->buffer = (double *)malloc(sizeof(double) * ray->pars.r1);
 	ft_get_spr(ray);
 	ft_raycast(ray);
 	ft_sprite(ray);

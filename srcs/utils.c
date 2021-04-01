@@ -6,13 +6,13 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 13:57:24 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/24 17:33:31 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:12:20 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		is_xpm(char *path)
+int				is_xpm(char *path)
 {
 	int i;
 
@@ -26,7 +26,7 @@ int		is_xpm(char *path)
 	return (-1);
 }
 
-void	pixel_put(t_ray *ray, int x, int y, int color)
+void			pixel_put(t_ray *ray, int x, int y, int color)
 {
 	char	*dst;
 
@@ -35,7 +35,7 @@ void	pixel_put(t_ray *ray, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	pixel_put2(t_ray *ray, int x, int y, int color)
+void			pixel_put2(t_ray *ray, int x, int y, int color)
 {
 	char	*dst;
 
@@ -44,30 +44,14 @@ void	pixel_put2(t_ray *ray, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	sort_double_vectors(int *order, double *distance, int len)
+unsigned int	ft_get_pixel(t_ray *ray, int x, int y)
 {
-	int		i;
-	int		j;
-	double	temp;
+	unsigned int	color;
+	char			*dest;
 
-	i = 0;
-	while (i < len - 1)
-	{
-		j = i + 1;
-		while (j < len)
-		{
-			if (distance[i] < distance[j])
-			{
-				temp = distance[i];
-				distance[i] = distance[j];
-				distance[j] = temp;
-				temp = (double)order[i];
-				order[i] = order[j];
-				order[j] = (int)temp;
-			}
-			j++;
-		}
-		i++;
-	}
+	dest = ray->sprite.img.addr +
+	(y * ray->sprite.img.line_length +
+	x * (ray->sprite.img.bits_per_pixel / 8));
+	color = *(unsigned int*)dest;
+	return (color);
 }
-

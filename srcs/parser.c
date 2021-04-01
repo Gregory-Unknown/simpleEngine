@@ -6,13 +6,13 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 15:35:15 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/27 18:16:38 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 16:34:49 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	ft_check_texture(char **str, t_pars *pars)
+static int		ft_check_texture(char **str, t_pars *pars)
 {
 	if (!(*str))
 		return (0);
@@ -35,7 +35,7 @@ static int	ft_check_texture(char **str, t_pars *pars)
 	return (1);
 }
 
-static char	**make_map(t_list **head, int size)
+static char		**make_map(t_list **head, int size)
 {
 	int		i;
 	char	**map;
@@ -54,21 +54,24 @@ static char	**make_map(t_list **head, int size)
 	return (map);
 }
 
-static int	ft_pars(char *line, int *flag, t_pars *pars, t_list **head)
+static int		ft_pars(char *line, int *flag, t_pars *pars, t_list **head)
 {
-	int		size;
-	char	**map;
+	int			size;
+	char		**map;
 
 	size = 0;
 	map = 0;
+	if (ft_strlen(line) == 0 && *flag == 1 && ft_lstsize(*head) > 0)
+	{
+		*flag = -1;
+		return (0);
+	}
 	map = ft_split(line, ' ');
 	*flag = ft_check_texture(map, pars);
 	if (*flag == 1 && line)
 	{
 		ft_lstadd_back(&(*head), ft_lstnew(ft_strdup(line)));
 		size++;
-		//free(line);
-		//line = NULL;
 	}
 	free(line);
 	ft_free_str(map);
@@ -76,14 +79,12 @@ static int	ft_pars(char *line, int *flag, t_pars *pars, t_list **head)
 	return (size);
 }
 
-
-
-int			ft_parser(int fd, t_pars *pars)
+int				ft_parser(int fd, t_pars *pars)
 {
-	int		flag;
-	int		size;
-	char	*line;
-	t_list	*head;
+	int			flag;
+	int			size;
+	char		*line;
+	t_list		*head;
 
 	line = 0;
 	head = 0;
@@ -92,9 +93,16 @@ int			ft_parser(int fd, t_pars *pars)
 	ft_init_pars(pars);
 	while (flag != -1 && get_next_line(fd, &line))
 		size += ft_pars(line, &flag, pars, &head);
-	ft_lstadd_back(&head, ft_lstnew(line));
-	size++;
-	pars->map = make_map(&head, size);
+	if (flag == 1)
+	{
+		ft_lstadd_back(&head, ft_lstnew(ft_strdup(line)));
+		free(line);
+		line = NULL;
+		size++;
+		pars->map = make_map(&head, size);
+	}
+	if (line && size)
+		flag = -1;
 	if (ft_check_map(pars->map))
 		flag = -1;
 	return (flag);

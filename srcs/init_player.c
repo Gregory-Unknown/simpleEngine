@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 11:15:30 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/26 15:36:59 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:04:23 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_player_pos(char **map, t_ray *ray)
 	}
 }
 
-static void		ft_init_NW(t_ray *ray)
+static void	ft_init_nw(t_ray *ray)
 {
 	if (ray->player.start_view == 'W')
 	{
@@ -54,7 +54,7 @@ static void		ft_init_NW(t_ray *ray)
 	}
 }
 
-static void		ft_init_ES(t_ray *ray)
+static void	ft_init_es(t_ray *ray)
 {
 	if (ray->player.start_view == 'S')
 	{
@@ -72,14 +72,13 @@ static void		ft_init_ES(t_ray *ray)
 	}
 }
 
-void			ft_init_player(t_ray *ray)
+void		ft_init_player(t_ray *ray)
 {
 	ft_player_pos(ray->pars.map, ray);
 	ray->player.pos.x = (double)ray->player.map_pos.x + 0.5;
 	ray->player.pos.y = (double)ray->player.map_pos.y + 0.5;
 	if (ft_strchr("NW", ray->player.start_view))
-		ft_init_NW(ray);
+		ft_init_nw(ray);
 	else
-		ft_init_ES(ray);
-
+		ft_init_es(ray);
 }

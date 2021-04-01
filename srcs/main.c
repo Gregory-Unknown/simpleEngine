@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:37:08 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/25 18:25:00 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 16:30:51 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ static int	ft_check_file(char *str)
 
 static int	ft_check_save(char *str)
 {
-	if (ft_strncmp(str, "--save", ft_strlen(str)))
+	int len;
+
+	len = (ft_strlen(str) > 6 ? ft_strlen(str) : 6);
+	if (ft_strncmp(str, "--save", len))
 		return (0);
 	return (1);
 }
@@ -53,19 +56,6 @@ int			main(int argc, char **argv)
 		ft_print_error("ERROR: the file cannot be opened!\n");
 	if (ft_parser(fd, &ray.pars) == -1)
 		ft_print_error("ERROR: map error!\n");
-	// ray.maplen = ft_maplen(ray.pars.map);
-	// int i = 0;
-	// printf("SW = %d SH = %d\n", ray.pars.r1, ray.pars.r2);
-	// printf("NO = %s\n", ray.pars.no);
-	// printf("SO = %s\n", ray.pars.so);
-	// printf("WE = %s\n", ray.pars.we);
-	// printf("EA = %s\n", ray.pars.ea);
-	// while (i < ray.maplen)
-	// {
-	// 	printf("%s\n", ray.pars.map[i]);
-	// 	i++;
-	// }
-	// printf("pos x = %d\n", ray.player.map_pos.x);
 	if (argc == 2)
 		ft_init_game(&ray);
 	else

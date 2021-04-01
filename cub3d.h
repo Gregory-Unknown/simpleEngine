@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:36:45 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/26 15:38:06 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 16:36:57 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,12 @@
 # include "libft/libft.h"
 # include "srcs/gnl/get_next_line.h"
 # include "minilibx-linux/mlx.h"
-
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdint.h>
 # include <math.h>
 
-#include <stdio.h>
-
-# define SW 1920
-# define SH 1080
 # define TW 64
 # define TH 64
 # define MV_SPEED 0.09
@@ -104,9 +99,9 @@ typedef struct	s_spr
 	int			width;
 	double		invdet;
 	int			stripe;
-	int 		tmpsy;
+	int			tmpsy;
 	int			tmpsd;
-	int 		scol;
+	int			scol;
 }				t_spr;
 
 typedef struct	s_col
@@ -202,6 +197,10 @@ t_col			ft_init_rgb(int r, int g, int b);
 void			ft_init_player(t_ray *ray);
 void			pixel_put(t_ray *ray, int x, int y, int color);
 void			pixel_put2(t_ray *ray, int x, int y, int color);
-
+unsigned int	ft_get_pixel(t_ray *ray, int x, int y);
+void			ft_init(t_ray *ray);
+void			ft_print_error(char *str);
+void			ft_init_texture(t_text *texture, t_ray *ray);
+void			ft_init_texture_sprite(t_ray *ray);
 
 #endif
