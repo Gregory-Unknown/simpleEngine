@@ -1,14 +1,14 @@
 R 1920 1080
 
-NO textures/doom/marbface.xpm
+NO textures/marbface.xpm
 
-SO textures/doom/mountains.xpm
+SO textures/mountains.xpm
 
-WE textures/doom/metal.xpm
+WE textures/metal.xpm
 
-EA textures/doom/brick.xpm
+EA textures/brick.xpm
 
-S textures/doom/skeleton.xpm
+S textures/warrior.xpm
 
 F 220,100,0
 
