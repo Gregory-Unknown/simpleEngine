@@ -6,13 +6,22 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 15:35:15 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 16:34:49 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 11:38:57 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int		ft_check_texture(char **str, t_pars *pars)
+static int		ft_check_full(t_pars *pars)
+{
+	if (pars->r1 != -1 && pars->r2 != -1 && pars->no
+	&& pars->so && pars->we && pars->ea && pars->s
+	&& pars->c_col.color != 65793 && pars->f_col.color != 65793)
+		return (1);
+	return (0);
+}
+
+static int		ft_check_texture(char **str, t_pars *pars, char *line)
 {
 	if (!(*str))
 		return (0);
@@ -32,7 +41,11 @@ static int		ft_check_texture(char **str, t_pars *pars)
 		return (ft_set_color(str[1], &pars->f_col));
 	else if (ft_strncmp(str[0], "C", 1) == 0)
 		return (ft_set_color(str[1], &pars->c_col));
-	return (1);
+	else if (ft_check_full(pars))
+		return (1);
+	else if (ft_check_line(line))
+		return (-1);
+	return (0);
 }
 
 static char		**make_map(t_list **head, int size)
@@ -67,7 +80,7 @@ static int		ft_pars(char *line, int *flag, t_pars *pars, t_list **head)
 		return (0);
 	}
 	map = ft_split(line, ' ');
-	*flag = ft_check_texture(map, pars);
+	*flag = ft_check_texture(map, pars, line);
 	if (*flag == 1 && line)
 	{
 		ft_lstadd_back(&(*head), ft_lstnew(ft_strdup(line)));

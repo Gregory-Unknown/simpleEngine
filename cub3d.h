@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:36:45 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 17:10:11 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 11:35:56 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,6 @@ void			ft_init(t_ray *ray);
 void			ft_print_error(char *str);
 void			ft_init_texture(t_text *texture, t_ray *ray);
 void			ft_init_texture_sprite(t_ray *ray);
+int				ft_check_line(char *str);
 
 #endif

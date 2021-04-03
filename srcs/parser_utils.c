@@ -6,11 +6,25 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:06:19 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/28 12:41:29 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 11:36:18 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int		ft_check_line(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	ft_free_str(char **str)
 {
