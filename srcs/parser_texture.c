@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 22:53:03 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 14:23:42 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 14:36:08 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ static int	ft_check_path(char *s)
 	int	fd;
 	int tmp;
 
+	fd = open(s, O_DIRECTORY);
+	tmp = fd;
+	if (tmp != -1)
+		return (1);
 	fd = open(s, O_RDONLY);
 	tmp = fd;
 	close(fd);
 	if (tmp < 0)
-		return (1);
-	fd = open(s, O_DIRECTORY);
-	tmp = fd;
-	close(fd);
-	if (tmp != -1)
 		return (1);
 	return (0);
 }

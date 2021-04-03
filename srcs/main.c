@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:37:08 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 16:30:51 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 14:48:03 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int			main(int argc, char **argv)
 		ft_print_error("ERROR: the file cannot be opened!\n");
 	if (ft_parser(fd, &ray.pars) == -1)
 		ft_print_error("ERROR: map error!\n");
+	close(fd);
 	if (argc == 2)
 		ft_init_game(&ray);
 	else

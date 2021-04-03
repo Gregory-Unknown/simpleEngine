@@ -6,12 +6,11 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:13:45 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 17:17:50 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 14:36:52 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-#include <stdio.h>
 
 static void	ft_init_screenshots(t_ray *ray)
 {
