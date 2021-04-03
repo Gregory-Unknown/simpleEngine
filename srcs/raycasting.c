@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 11:47:08 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 17:10:09 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/03 14:15:30 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int			ft_start(t_ray *ray)
 	ft_sprite(ray);
 	free(ray->buffer);
 	if (ray->screenshot_flag == 0)
-		mlx_put_image_to_window(ray->mlx.mlx, ray->mlx.win, ray->mlx.img.img, 0, 0);
+		mlx_put_image_to_window(ray->mlx.mlx, ray->mlx.win,
+		ray->mlx.img.img, 0, 0);
 	return (0);
 }
