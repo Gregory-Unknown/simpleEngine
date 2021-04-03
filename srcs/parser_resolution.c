@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 22:35:04 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/28 13:05:47 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:00:28 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int		ft_check_resolution(char *s)
 	int i;
 
 	i = 0;
+	if (!s)
+		return(1);
 	while (s[i])
 	{
 		if (ft_isdigit(s[i]) == 0)
-			return (-1);
+			return (1);
 		i++;
 	}
 	return (0);

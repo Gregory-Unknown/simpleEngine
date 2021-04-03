@@ -8,12 +8,14 @@ WE textures/metal.xpm
 
 EA textures/brick.xpm
 
-S textures/skeleton.xpm
+S textures/warrior.xpm
 
-F 220,100,0
+F 220,100,150
 
 C 225,30,0
 
-1111
-11S1
-1111
+11111
+11211
+12S21
+11211
+11111

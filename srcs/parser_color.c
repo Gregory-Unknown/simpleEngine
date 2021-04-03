@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:07:58 by esobchak          #+#    #+#             */
-/*   Updated: 2021/03/29 17:17:48 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:01:42 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static int	ft_check_color(char *str)
 {
 	int rgb;
 
+	if (!str)
+		return (1);
 	rgb = ft_atoi(str);
 	if (ft_check_resolution(str) || rgb < 0 || rgb > 255)
-		return (-1);
+		return (1);
 	return (0);
 }
 
