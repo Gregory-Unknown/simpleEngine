@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 15:35:15 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/03 11:38:57 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/06 01:15:35 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		ft_check_texture(char **str, t_pars *pars, char *line)
 	if (!(*str))
 		return (0);
 	if (ft_strncmp(str[0], "R", 2) == 0)
-		return (ft_screen_resolution(str[1], str[2], pars));
+		return (ft_screen_resolution(str, pars));
 	else if (ft_strncmp(str[0], "NO", 2) == 0)
 		return (ft_set_texture(str[1], &pars->no));
 	else if (ft_strncmp(str[0], "SO", 2) == 0)
@@ -38,9 +38,9 @@ static int		ft_check_texture(char **str, t_pars *pars, char *line)
 	else if (ft_strncmp(str[0], "S", 1) == 0)
 		return (ft_set_texture(str[1], &pars->s));
 	else if (ft_strncmp(str[0], "F", 1) == 0)
-		return (ft_set_color(str[1], &pars->f_col));
+		return (ft_set_color(str[1], &pars->f_col, line));
 	else if (ft_strncmp(str[0], "C", 1) == 0)
-		return (ft_set_color(str[1], &pars->c_col));
+		return (ft_set_color(str[1], &pars->c_col, line));
 	else if (ft_check_full(pars))
 		return (1);
 	else if (ft_check_line(line))
@@ -77,6 +77,7 @@ static int		ft_pars(char *line, int *flag, t_pars *pars, t_list **head)
 	if (ft_strlen(line) == 0 && *flag == 1 && ft_lstsize(*head) > 0)
 	{
 		*flag = -1;
+		free(line);
 		return (0);
 	}
 	map = ft_split(line, ' ');
@@ -114,9 +115,9 @@ int				ft_parser(int fd, t_pars *pars)
 		size++;
 		pars->map = make_map(&head, size);
 	}
-	if (line && size)
-		flag = -1;
-	if (ft_check_map(pars->map))
+	if (flag == 0)
+		free(line);
+	if ((line && size) || ft_check_map(pars->map))
 		flag = -1;
 	return (flag);
 }

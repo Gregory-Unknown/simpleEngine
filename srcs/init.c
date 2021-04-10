@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:13:09 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/01 17:10:10 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:51:14 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	ft_init_texture(t_text *texture, t_ray *ray)
 {
 	texture->img.img = mlx_xpm_file_to_image(ray->mlx.mlx,
 	texture->path, &texture->width, &texture->height);
+	if (!texture->img.img)
+	{
+		write(2, "ERROR: not valid texture!\n", 26);
+		ft_exit(ray);
+	}
 	texture->img.addr = mlx_get_data_addr(texture->img.img,
 	&texture->img.bits_per_pixel,
 	&texture->img.line_length,
@@ -51,6 +56,11 @@ void	ft_init_texture_sprite(t_ray *ray)
 {
 	ray->sprite.img.img = mlx_xpm_file_to_image(ray->mlx.mlx,
 	ray->str, &ray->spr.width, &ray->spr.height);
+	if (!ray->sprite.img.img)
+	{
+		write(2, "ERROR: not valid sprite!\n", 25);
+		ft_exit(ray);
+	}
 	ray->sprite.img.addr = mlx_get_data_addr(ray->sprite.img.img,
 	&ray->sprite.img.bits_per_pixel,
 	&ray->sprite.img.line_length,

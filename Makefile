@@ -6,7 +6,7 @@
 #    By: esobchak <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/29 18:24:15 by esobchak          #+#    #+#              #
-#    Updated: 2021/04/03 14:24:00 by esobchak         ###   ########.fr        #
+#    Updated: 2021/04/05 16:50:08 by esobchak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,6 @@ fclean: clean
 re: fclean all
 
 norm :
-	@norminette *.h ./libft/*.c ./libft/*.h ./srcs/*.c ./srcs/gnl/*.c srcs/gnl/*.h
+	@norminette *.h ./libft/*.c ./libft/*.h ./srcs/*.c ./srcs/gnl/*.c ./srcs/gnl/*.h
 
 .PHONY: all clean fclean re norm run screen

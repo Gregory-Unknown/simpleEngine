@@ -6,7 +6,7 @@
 /*   By: esobchak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:36:45 by esobchak          #+#    #+#             */
-/*   Updated: 2021/04/03 11:35:56 by esobchak         ###   ########.fr       */
+/*   Updated: 2021/04/06 01:14:26 by esobchak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,9 +190,9 @@ int				ft_start(t_ray *ray);
 int				ft_parser(int fd, t_pars *pars);
 void			ft_do_screenshot(t_ray *ray);
 int				ft_check_resolution(char *s);
-int				ft_screen_resolution(char *s1, char *s2, t_pars *pars);
+int				ft_screen_resolution(char **s, t_pars *pars);
 int				ft_set_texture(char *str, char **path);
-int				ft_set_color(char *str, t_col *col);
+int				ft_set_color(char *str, t_col *col, char *line);
 t_col			ft_init_rgb(int r, int g, int b);
 void			ft_init_player(t_ray *ray);
 void			pixel_put(t_ray *ray, int x, int y, int color);
